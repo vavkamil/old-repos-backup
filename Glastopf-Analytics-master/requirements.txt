@@ -1,0 +1,3 @@
+DBI - Database independent interface for Perl (apt-get install libcpan-sqlite-perl)
+Dancer2 - Lightweight yet powerful web application framework (cpnam Dancer2)
+Geo::IP - Look up location and network information by IP Address (apt-get install libgeo-ip-perl)

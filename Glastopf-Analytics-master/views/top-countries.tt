@@ -1,0 +1,69 @@
+  
+<!-- 
+    Credit goes to the Ruby on Rails team for this page 
+    has been heavily based on the default Rails page that is 
+    built with a scaffolded application.
+
+    Thanks a lot to them for their work.
+
+    See Ruby on Rails if you want a kickass framework in Ruby:
+    http://www.rubyonrails.org/
+-->
+
+<div id="page">
+      <div id="sidebar">
+        <ul id="sidebar-items">
+          <li>
+            <h3>Command center</h3>
+            <ul class="links">
+              <li><a href="/top-files">Show top files</a></li>
+              <li><a href="/last-files">Show last files</a></li>
+              <li><a href="/last-events">Show last events</a></li>
+              <li><a href="/top-visitors">Show top visitors</a></li>
+              <li><a href="/top-countries">Show top countries</a></li>
+              <li><a href="/last-comments">Show last comments</a></li>         
+              <li><a href="/top-user-agents">Show top user-agents</a></li>
+              <li><a href="/top-event-patterns">Show top event patterns</a></li>
+              <li><a href="/top-requested-filetypes">Show top requested filetypes</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <h3>Links & Credits</h3>
+
+            <ul class="links">
+              <li><a href="http://www.glastopf.org/">www.glastopf.org</a></li>
+              <li><a href="http://www.xexexe.cz/">www.xexexe.cz</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <h3>Log out</h3>
+
+            <a href="/logout">Click here to logout</a>
+
+          </li>
+        </ul>
+
+      </div>
+
+      <div id="content">
+        <div id="header">
+          <a href="/">
+          <h1>Glastopf Analytics</h1>
+          <h2>easy honeypot statistics v2.0</h2>
+          </a>
+        </div>
+
+        <div id="getting-started">
+          <h1>Top countries</h1>
+          <h2>Showing top <% limit %> countries</h2>
+          <form action="<% add_entry_url %>" method=get class=add-entry>
+              Limit:
+              <input type=text size=5 name=limit value=<% limit %>>
+              <input type=submit value=Show>
+          </form><br>
+          <% countries %>
+        </div>
+      </div>
+    </div>

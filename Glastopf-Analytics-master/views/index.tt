@@ -1,0 +1,141 @@
+  
+<!-- 
+    Credit goes to the Ruby on Rails team for this page 
+    has been heavily based on the default Rails page that is 
+    built with a scaffolded application.
+
+    Thanks a lot to them for their work.
+
+    See Ruby on Rails if you want a kickass framework in Ruby:
+    http://www.rubyonrails.org/
+-->
+
+<div id="page">
+      <div id="sidebar">
+        <ul id="sidebar-items">
+          <li>
+            <h3>Command center</h3>
+            <ul class="links">
+              <li><a href="/top-files">Show top files</a></li>
+              <li><a href="/last-files">Show last files</a></li>
+              <li><a href="/last-events">Show last events</a></li>
+              <li><a href="/top-visitors">Show top visitors</a></li>
+              <li><a href="/top-countries">Show top countries</a></li>
+              <li><a href="/last-comments">Show last comments</a></li>         
+              <li><a href="/top-user-agents">Show top user-agents</a></li>
+              <li><a href="/top-event-patterns">Show top event patterns</a></li>
+              <li><a href="/top-requested-filetypes">Show top requested filetypes</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <h3>Links & Credits</h3>
+
+            <ul class="links">
+              <li><a href="http://www.glastopf.org/">www.glastopf.org</a></li>
+              <li><a href="http://www.xexexe.cz/">www.xexexe.cz</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <h3>Log out</h3>
+
+            <a href="/logout">Click here to logout</a>
+
+          </li>
+        </ul>
+
+      </div>
+
+      <div id="content">
+        <div id="header">
+          <a href="/">
+          <h1>Glastopf Analytics</h1>
+          <h2>easy honeypot statistics v2.0</h2>
+          </a>
+        </div>
+
+        <div id="getting-started">
+          <h1>Getting started</h1>
+          <h2><% test %></h2>
+                    
+          <h3><a href="#" id="about_env_link">Info about your honeypot environment</a></h3>
+
+          <div id="about-content" style="display: none;">
+            <table>
+                <tbody>
+                <tr>
+                    <td>Perl version</td>
+                    <td><tt><% perl_version %></tt></td>
+                </tr>
+                <tr>
+                    <td>Dancer version</td>
+                    <td><tt><% dancer_version %></tt></td>
+                </tr>
+                <tr>
+                    <td>Backend</td>
+                    <td><tt><% settings.apphandler %></tt></td>
+                </tr>
+                <tr>
+                    <td>Appdir</td>
+                    <td><tt>/root/dancer/MyWeb-App</tt></td>
+                </tr>
+                <tr>
+                    <td>Template engine</td>
+                    <td><tt><% settings.template %></tt></td>
+                </tr>
+                <tr>
+                    <td>Logger engine</td>
+                    <td><tt><% settings.logger %></tt></td>
+                </tr>
+                <tr>
+                    <td>Running environment</td>
+                    <td><tt><% settings.environment %></tt></td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+
+    <script type="text/javascript">
+    $('#about_env_link').click(function() {
+        $('#about-content').slideToggle('fast', function() {
+            // ok
+        });
+        return( false );
+    });
+    </script>
+
+
+          <ol>          
+            <li>
+              <h2>Thank you for using glastopf honeypot</h2>
+
+              <p>
+              We recommend running glastopf using this commands:<br>
+              <strong>cd /opt/glastopf-runner/<br>
+                      nohup glastopf-runner &</strong><br>
+                this way you will see Traceback in case of error in nohup.out
+              </p>
+            </li>
+
+            <li>
+              <h2>Graphs & analytics</h2>
+
+              <p>
+              My goal is to make data mining more accessible and offer the most available informations about your honeypot. 
+              </p>
+            </li>
+
+            <li>
+                <h2>Enjoy opensource development</h2>
+
+                <p>
+                If you love Perl and want to help, fork me on <a href="https://github.com/vavkamil/Glastopf-Analytics">GitHub</a><br>
+                Feedbacks or suggestions please send to: <tt>vavkamil@gmail.com</tt>
+                </p>
+            </li>
+
+          </ol>
+        </div>
+      </div>
+    </div>
