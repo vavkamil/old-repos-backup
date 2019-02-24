@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>CRXScanner</title>
+	</head>
+	<body>
+		<h1>Fingerprinting Chrome Extensions</h1>
+		<h3>Manifest v2.0 compatible</h3>
+		<p>Source code on <a href="https://github.com/vavkamil/CRXScanner" target="_blank">GitHub</a> | More info on my <a href="http://www.xexexe.cz/2015/12/fingerprinting-chrome-extensions.html" target="_blank">blog</a></p>
+
+		<p><strong>JavaScript for the PoC is required, try to turn off AdBlock to get it work.</strong></p>
+		<hr>
+		<p><strong>You have installed those Chrome extensions, that can be detected:</strong></p>
+		<div id="installed"></div>
+
+		<script>
+			function loadJSON(callback) {
+				var xobj = new XMLHttpRequest();
+				xobj.overrideMimeType("application/json");
+				xobj.open('GET', 'addons.json', true);
+				xobj.onreadystatechange = function () {
+					if (xobj.readyState == 4 && xobj.status == "200") {
+						// Required use of an anonymous callback as .openwill NOT return
+						// a value but simply returns undefined in asynchronous mode
+						callback(xobj.responseText);
+					}
+				};
+				xobj.send(null);
+			}
+
+			function installed(name, version, id) {
+				var div = document.getElementById('installed');
+				div.innerHTML = div.innerHTML + "<p>Extension name: <strong>" + name + "</strong> Version: <strong>" + version + "</strong><br>ID: <strong>" + id + "</strong></p>";
+			}
+
+			function init() {
+				loadJSON(function(response) {
+					// Parse JSON string into object
+					var actual_JSON = JSON.parse(response);
+
+					for (var id in actual_JSON) {
+						// id
+						// actual_JSON[id].name
+						// actual_JSON[id].version
+						// actual_JSON[id].resource
+						// actual_JSON[id].sink
+
+						if (actual_JSON[id].sink == "img") {
+							var x = document.createElement("img");
+							x.setAttribute("style", "visibility:hidden");
+							x.setAttribute("onload", "installed('"+actual_JSON[id].name+"', '"+actual_JSON[id].version+"', '"+id+"')");
+							x.setAttribute("src", "chrome-extension://" + id + "/" + actual_JSON[id].resource);
+							document.body.appendChild(x);
+						}
+						else if (actual_JSON[id].sink == "js") {
+							var x = document.createElement("script");
+							x.setAttribute('type', 'text/javascript');
+							x.setAttribute("onload", "installed('"+actual_JSON[id].name+"', '"+actual_JSON[id].version+"', '"+id+"')");
+							x.setAttribute("src", "chrome-extension://" + id + "/" + actual_JSON[id].resource);
+							document.body.appendChild(x);
+						}
+						else if (actual_JSON[id].sink == "css") {
+							var x = document.createElement("link");
+							x.setAttribute('type', 'text/css');
+							x.setAttribute('rel', 'stylesheet');
+							x.setAttribute("onload", "installed('"+actual_JSON[id].name+"', '"+actual_JSON[id].version+"', '"+id+"')");
+							x.setAttribute("src", "chrome-extension://" + id + "/" + actual_JSON[id].resource);
+							document.body.appendChild(x);
+						}
+						// else if (actual_JSON[id].sink == "html") {
+						// 	var x = document.createElement("iframe");
+						// 	x.setAttribute("id", ""+id+"");
+						// 	x.setAttribute("style", "visibility:hidden");
+						// 	x.setAttribute("onload", "installed('"+actual_JSON[id].name+"', '"+actual_JSON[id].version+"', '"+id+"')");
+						// 	x.setAttribute("src", "chrome-extension://" + id + "/" + actual_JSON[id].resource);
+						// 	document.body.appendChild(x);
+						// }
+					}
+				});
+			}
+			init();
+		</script>
+	</body>
+</html>
